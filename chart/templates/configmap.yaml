@@ -5,6 +5,6 @@ metadata:
   labels:
     {{- include "chart.labels" . | nindent 4 }}
 data:
-  {{- with .Values.env }}
+  {{- with .Values.env.configmap }}
   {{- toYaml . | nindent 4 }}
   {{- end }}
