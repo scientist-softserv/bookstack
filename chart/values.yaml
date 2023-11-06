@@ -95,22 +95,23 @@ mariadb:
       size: 10Gi
 
 env:
-  APP_ENV: production
-  APP_URL: https://bookstack.notch8.cloud
-  APP_KEY: $APP_KEY
-  MARIADB_HOST: bookstack-mariadb
-  MARIADB_DATABASE: bookstack
-  MARIADB_USER: mariadb
-  MARIADB_PASSWORD: $MARIADB_PASSWORD
-  MARIADB_ROOT_PASSWORD: $MARIADB_ROOT_PASSWORD
-  STORAGE_TYPE: local_secure_restricted
-  STORAGE_IMAGE_TYPE: local_secure_restricted
-  STORAGE_ATTACHMENT_TYPE: local_secure_restricted
-  # MAIL_DRIVER: smtp
-  # MAIL_HOST: localhost
-  # MAIL_PORT: 2525
-  # MAIL_USERNAME: your-smtp-username
-  # MAIL_PASSWORD: $MAIL_PASSWORD
-  # MAIL_ENCRYPTION: tls
-  # MAIL_FROM_ADDRESS: dev-oops@scientist.com
-  # MAIL_FROM_NAME: "SoftServ by Scientist.com Maintenance Department Playbook"
+  configmap:
+    APP_ENV: production
+    APP_URL: https://bookstack.notch8.cloud
+    APP_KEY: $APP_KEY
+    MARIADB_HOST: bookstack-mariadb
+    MARIADB_DATABASE: bookstack
+    MARIADB_USER: mariadb
+    MARIADB_PASSWORD: $MARIADB_PASSWORD
+    MARIADB_ROOT_PASSWORD: $MARIADB_ROOT_PASSWORD
+    STORAGE_TYPE: local_secure_restricted
+    STORAGE_IMAGE_TYPE: local_secure_restricted
+    STORAGE_ATTACHMENT_TYPE: local_secure_restricted
+    # MAIL_DRIVER: smtp
+    # MAIL_HOST: localhost
+    # MAIL_PORT: 2525
+    # MAIL_USERNAME: your-smtp-username
+    # MAIL_PASSWORD: $MAIL_PASSWORD
+    # MAIL_ENCRYPTION: tls
+    # MAIL_FROM_ADDRESS: dev-oops@scientist.com
+    # MAIL_FROM_NAME: "SoftServ by Scientist.com Maintenance Department Playbook"

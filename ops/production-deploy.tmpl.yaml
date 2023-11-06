@@ -20,7 +20,6 @@ service:
 ingress:
   enabled: true
   annotations: {
-    kubernetes.io/ingress.class: "nginx",
     nginx.ingress.kubernetes.io/proxy-body-size: "0",
     cert-manager.io/cluster-issuer: letsencrypt-prod
   }
@@ -28,6 +27,7 @@ ingress:
     - host: bookstack.notch8.cloud
       paths:
         - path: /
+          pathType: ImplementationSpecific
   tls:
     - hosts:
         - bookstack.notch8.cloud
@@ -76,22 +76,6 @@ volumeMounts:
     mountPath: "/var/www/html/bookstack/public/uploads"
   - name: storage-uploads
     mountPath: "/var/www/html/bookstack/storage/uploads"
-
-mariadb:
-  enabled: true
-  architecture: standalone
-  auth:
-    rootPassword: $MARIADB_ROOT_PASSWORD
-    database: bookstack
-    username: mariadb
-    password: $MARIADB_PASSWORD
-  primary:
-    persistence:
-      enabled: true
-      storageClass: "gp2"
-      accessModes:
-        - ReadWriteOnce
-      size: 10Gi
 
 env:
   configmap:
