@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+  mariadb:
+    image: bitnami/mariadb:11.1.2
+    platform: 'linux/amd64'
+    env_file:
+      - .env
+    environment:
+      - MARIADB_DATABASE=${DB_DATABASE}
+      - MARIADB_PASSWORD=${DB_PASSWORD}
+      - MARIADB_ROOT_PASSWORD=DatabaseFTW
+      - MARIADB_USER=${DB_USERNAME}
+    volumes:
+      - 'mariadb-data:/bitnami/mariadb'
+
+  bookstack:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: 'linux/amd64'
+    image: ghcr.io/scientist-softserv/bookstack:${TAG:-latest}
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+    volumes:
+      - public-uploads:/var/www/bookstack/public/uploads
+      - storage-uploads:/var/www/bookstack/storage/uploads
+    ports:
+      - '8080:8080'
+
+volumes:
+ mariadb-data:
+ public-uploads:
+ storage-uploads:
