@@ -87,6 +87,7 @@ env:
     DB_DATABASE: bookstack
     DB_USERNAME: root
     DB_PASSWORD: $MARIADB_PASSWORD
+    DB_PORT: 3306
     MARIADB_HOST: bookstack-production-mariadb:3306
     MARIADB_DATABASE: bookstack
     MARIADB_USER: root

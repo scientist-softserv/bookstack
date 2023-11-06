@@ -60,7 +60,7 @@ else
 fi
 
 echo "Starting Migration..."
-php artisan migrate --force
+php artisan migrate --no-interaction --force
 
 echo "Clearing caches..."
 php artisan cache:clear
