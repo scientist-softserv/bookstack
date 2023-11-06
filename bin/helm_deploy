@@ -22,7 +22,6 @@ helm upgrade \
     --timeout 15m0s \
     --set image.repository="$DEPLOY_IMAGE" \
     --set image.tag="$DEPLOY_TAG" \
-    --dry-run \
     $HELM_EXTRA_ARGS \
     $DRY_RUN_DEBUG \
     --namespace="$namespace" \
