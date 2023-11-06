@@ -14,7 +14,7 @@ services:
     volumes:
       - 'mariadb-data:/bitnami/mariadb'
 
-  bookstack:
+  web:
     build:
       context: .
       dockerfile: Dockerfile
