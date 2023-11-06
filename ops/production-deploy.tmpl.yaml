@@ -98,7 +98,7 @@ env:
   APP_ENV: production
   APP_URL: https://bookstack.notch8.cloud
   APP_KEY: $APP_KEY
-  MARIADB_HOST: bookstack-mariadb
+  MARIADB_HOST: bookstack-production-mariadb
   MARIADB_DATABASE: bookstack
   MARIADB_USER: mariadb
   MARIADB_PASSWORD: $MARIADB_PASSWORD
