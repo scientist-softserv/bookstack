@@ -19,10 +19,10 @@ service:
 
 ingress:
   enabled: true
-  className: "nginx"
   annotations: {
     kubernetes.io/ingress.class: nginx,
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0",
+    cert-manager.io/cluster-issuer: letsencrypt-prod
   }
   hosts:
     - host: bookstack.notch8.cloud
@@ -30,17 +30,17 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls:
-    - secretName: bookstack-tls
-      hosts:
+    - hosts:
         - bookstack.notch8.cloud
+      secretName: bookstack-tls
 
-resources:
-  limits:
-    cpu: 200m
-    memory: 256Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi
+resources: {}
+  # limits:
+  #   cpu: 200m
+  #   memory: 256Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
 
 autoscaling:
   enabled: false
@@ -78,28 +78,16 @@ volumeMounts:
   - name: storage-uploads
     mountPath: "/var/www/html/bookstack/storage/uploads"
 
-mariadb:
-  enabled: true
-  architecture: standalone
-  auth:
-    rootPassword: $MARIADB_ROOT_PASSWORD
-    database: bookstack
-    username: mariadb
-    password: $MARIADB_PASSWORD
-  primary:
-    persistence:
-      enabled: true
-      storageClass: "gp2"
-      accessModes:
-        - ReadWriteOnce
-      size: 10Gi
-
 env:
   configmap:
     APP_ENV: production
     APP_URL: https://bookstack.notch8.cloud
     APP_KEY: $APP_KEY
-    MARIADB_HOST: bookstack-mariadb
+    DB_HOST: bookstack-production-mariadb
+    DB_DATABASE: bookstack
+    DB_USERNAME: mariadb
+    DB_PASSWORD: $MARIADB_PASSWORD
+    MARIADB_HOST: bookstack-production-mariadb
     MARIADB_DATABASE: bookstack
     MARIADB_USER: mariadb
     MARIADB_PASSWORD: $MARIADB_PASSWORD
