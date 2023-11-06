@@ -1,0 +1,11 @@
+# templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "chart.fullname" . }}-configmap
+  labels:
+    {{- include "chart.labels" . | nindent 4 }}
+data:
+  {{- with .Values.env.configmap }}
+  {{- toYaml . | nindent 4 }}
+  {{- end }}

@@ -18,7 +18,7 @@ service:
   port: 8080
 
 ingress:
-  enabled: true
+  enabled: true  # Enable ingress
   className: "nginx"
   annotations: {
     kubernetes.io/ingress.class: nginx,
@@ -36,16 +36,16 @@ ingress:
 
 resources:
   limits:
-    cpu: 200m
-    memory: 256Mi
+    cpu: 200m  # Adjust the CPU limit
+    memory: 256Mi  # Adjust the memory limit
   requests:
     cpu: 100m
     memory: 128Mi
 
 autoscaling:
-  enabled: false
+  enabled: false  # Enable autoscaling
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 5  # Adjust the maximum number of replicas
   targetCPUUtilizationPercentage: 80
 
 mariadb:
@@ -95,42 +95,41 @@ mariadb:
       size: 10Gi
 
 env:
-  configmap:
-    - name: APP_ENV
-      value: "production"
-    - name: APP_URL
-      value: "https://bookstack.notch8.cloud"
-    - name: APP_KEY
-      value: $APP_KEY
-    - name: MARIADB_HOST
-      value: bookstack-mariadb
-    - name: MARIADB_DATABASE
-      value: bookstack
-    - name: MARIADB_USER
-      value: mariadb
-    - name: MARIADB_PASSWORD
-      value: $MARIADB_PASSWORD
-    - name: MARIADB_ROOT_PASSWORD
-      value: $MARIADB_ROOT_PASSWORD
-    - name: STORAGE_TYPE
-      value: local_secure_restricted
-    - name: STORAGE_IMAGE_TYPE
-      value: local_secure_restricted
-    - name: STORAGE_ATTACHMENT_TYPE
-      value: local_secure_restricted
-    # - name: MAIL_DRIVER
-    #   value: "smtp"
-    # - name: MAIL_HOST
-    #   # value: localhost
-    # - name: MAIL_PORT
-    #   value: "2525"
-    # - name: MAIL_USERNAME
-    #   # value: "your-smtp-username"
-    # - name: MAIL_PASSWORD
-    #   # value: $MAIL_PASSWORD
-    # - name: MAIL_ENCRYPTION
-    #   value: "tls"
-    # - name: MAIL_FROM_ADDRESS
-    #   # value: "no-reply@yourbookstackdomain.com"
-    # - name: MAIL_FROM_NAME
-    #   value: "SoftServ by Scientist.com Maintenance Department Playbook"
+  - name: APP_ENV
+    value: "production"
+  - name: APP_URL
+    value: "https://bookstack.notch8.cloud"
+  - name: APP_KEY
+    value: $APP_KEY
+  - name: MARIADB_HOST
+    value: bookstack-mariadb
+  - name: MARIADB_DATABASE
+    value: bookstack
+  - name: MARIADB_USER
+    value: mariadb
+  - name: MARIADB_PASSWORD
+    value: $MARIADB_PASSWORD
+  - name: MARIADB_ROOT_PASSWORD
+    value: $MARIADB_ROOT_PASSWORD
+  - name: STORAGE_TYPE
+    value: local_secure_restricted
+  - name: STORAGE_IMAGE_TYPE
+    value: local_secure_restricted
+  - name: STORAGE_ATTACHMENT_TYPE
+    value: local_secure_restricted
+  # - name: MAIL_DRIVER
+  #   value: "smtp"
+  # - name: MAIL_HOST
+  #   # value: localhost
+  # - name: MAIL_PORT
+  #   value: "2525"
+  # - name: MAIL_USERNAME
+  #   # value: "your-smtp-username"
+  # - name: MAIL_PASSWORD
+  #   # value: $MAIL_PASSWORD
+  # - name: MAIL_ENCRYPTION
+  #   value: "tls"
+  # - name: MAIL_FROM_ADDRESS
+  #   # value: "no-reply@yourbookstackdomain.com"
+  # - name: MAIL_FROM_NAME
+  #   value: "SoftServ by Scientist.com Maintenance Department Playbook"

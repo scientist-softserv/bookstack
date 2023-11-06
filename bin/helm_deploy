@@ -13,6 +13,9 @@ DEPLOY_IMAGE="${DEPLOY_IMAGE:-ghcr.io/scientist-softserv/bookstack}"
 DEPLOY_TAG="${DEPLOY_TAG:-latest}"
 echo $DEPLOY_TAG
 
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+
 helm upgrade \
     --install \
     --atomic \

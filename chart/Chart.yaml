@@ -1,0 +1,12 @@
+apiVersion: v2
+name: chart
+description: A Helm chart for SoftServ Bookstack
+type: application
+version: 0.1.0
+dependencies:
+- name: mariadb
+  version: '11.1.2'
+  repository: https://charts.bitnami.com/bitnami
+  condition: mariadb.enabled
+  tags:
+    - database
